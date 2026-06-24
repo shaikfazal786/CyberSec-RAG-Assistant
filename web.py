@@ -1,0 +1,51 @@
+from flask import Flask, jsonify, render_template, request
+
+from rag import answer_question
+
+app = Flask(__name__, static_folder="static", template_folder="templates")
+
+
+@app.route("/")
+def home():
+    return render_template("index.html")
+
+
+@app.route("/chat")
+def chat():
+    return render_template("chat.html")
+
+
+@app.route("/history")
+def history():
+    return render_template("history.html")
+
+
+@app.route("/health")
+def health():
+    return jsonify({"status": "ok", "message": "CyberSec RAG Assistant is running"})
+
+
+@app.route("/ask", methods=["POST"])
+def ask():
+    data = request.get_json(force=True)
+    question = data.get("question", "").strip()
+
+    if not question:
+        return jsonify({"error": "Question cannot be empty."}), 400
+
+    try:
+        response = answer_question(question)
+        return jsonify({
+            "answer": response.answer,
+            "sources": [
+                {"filename": source.filename, "page": source.page}
+                for source in response.sources
+            ],
+        })
+
+    except Exception as exc:
+        return jsonify({"error": str(exc)}), 500
+
+
+if __name__ == "__main__":
+    app.run(debug=True, host="0.0.0.0", port=5000)

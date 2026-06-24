@@ -5,7 +5,7 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 
 def create_chunks(
-    documents: list[Document], chunk_size: int = 500, chunk_overlap: int = 100
+    documents: list[Document], chunk_size: int = 800, chunk_overlap: int = 150
 ) -> list[Document]:
     """Create overlapping text chunks and attach a stable batch index."""
     splitter = RecursiveCharacterTextSplitter(

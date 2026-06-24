@@ -1,14 +1,11 @@
-from google import genai
-from config import settings
+# test_pdf.py
 
-if not settings.google_api_key:
-    raise RuntimeError("GOOGLE_API_KEY is not configured.")
+from pypdf import PdfReader
 
-client = genai.Client(api_key=settings.google_api_key)
-
-response = client.models.generate_content(
-    model="gemini-2.5-flash",
-    contents="Hello"
+reader = PdfReader(
+    "data/cyber.pdf"
 )
 
-print(response.text)
+print(
+    reader.pages[0].extract_text()
+)

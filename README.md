@@ -37,9 +37,16 @@ Add your Gemini API key to `.env`, place PDF files in `data/`, and build the ind
 
 ```powershell
 python ingest.py
-streamlit run app.py
 ```
 
+Then start the web frontend with Flask:
+
+```powershell
+python web.py
+```
+
+Open `http://127.0.0.1:5000` in a browser to access the home page.
+A quick service check is available at `http://127.0.0.1:5000/health`.
 Re-run `python ingest.py` whenever PDFs change. The ingestion command rebuilds the collection to prevent stale and duplicate chunks.
 
 ## Configuration

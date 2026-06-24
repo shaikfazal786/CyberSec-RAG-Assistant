@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CyberSec RAG Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  </head>
+  <body data-page="home">
+    <header class="site-header">
+      <div class="brand">CyberSec RAG Assistant</div>
+      <nav class="site-nav">
+        <a class="nav-link" href="/">Home</a>
+        <a class="nav-link" href="/chat">Ask</a>
+        <a class="nav-link" href="/history">History</a>
+      </nav>
+    </header>
+
+    <main class="page-container">
+      <section class="hero-section">
+        <div class="hero-copy">
+          <p class="eyebrow">AI Cybersecurity Knowledge</p>
+          <h1>Professional RAG assistant for security research</h1>
+          <p class="hero-text">
+            Ask questions about cybersecurity, threat intelligence, MITRE ATT&CK, and incident response.
+            Answers are grounded in your indexed documents and served with source citations.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="/chat">Ask a Question</a>
+            <a class="btn btn-secondary" href="/history">View History</a>
+          </div>
+        </div>
+        <div class="hero-panel">
+          <div class="panel-card">
+            <h2>Suggested questions</h2>
+            <ul class="suggestion-list">
+              <li>What is phishing?</li>
+              <li>How does ransomware work?</li>
+              <li>Explain MITRE ATT&CK.</li>
+              <li>What is incident response?</li>
+              <li>How do I secure cloud assets?</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="features-section">
+        <h2>Why this assistant?</h2>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <h3>Grounded answers</h3>
+            <p>Responses are built from indexed document snippets, not guesswork.</p>
+          </article>
+          <article class="feature-card">
+            <h3>Cybersecurity focus</h3>
+            <p>Designed for threat analysis, security controls, and incident response research.</p>
+          </article>
+          <article class="feature-card">
+            <h3>Fast search</h3>
+            <p>Vector search returns the most relevant content from your PDF corpus.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Built with Flask, ChromaDB, and Google Gemini for local cybersecurity research.</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  </body>
+</html>

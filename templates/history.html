@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>History - CyberSec RAG Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  </head>
+  <body data-page="history">
+    <header class="site-header">
+      <div class="brand">CyberSec RAG Assistant</div>
+      <nav class="site-nav">
+        <a class="nav-link" href="/">Home</a>
+        <a class="nav-link" href="/chat">Ask</a>
+        <a class="nav-link" href="/history">History</a>
+      </nav>
+    </header>
+
+    <main class="page-container history-page">
+      <div class="card history-card">
+        <h1>Chat History</h1>
+        <p>Review past questions and answers stored in your browser.</p>
+        <div class="history-actions">
+          <button id="clear-history" class="btn btn-secondary">Clear history</button>
+        </div>
+        <ul id="history-list" class="history-list"></ul>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <p>History is stored locally, so it remains private to this browser.</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/history.js') }}"></script>
+  </body>
+</html>
