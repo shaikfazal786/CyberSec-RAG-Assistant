@@ -14,7 +14,7 @@ User question -> similarity search -> relevant chunks -> Gemini -> answer
 
 | Component | Technology |
 | --- | --- |
-| Frontend | Streamlit |
+| Frontend | Flask + HTML/CSS/JavaScript |
 | LLM | Google Gemini API |
 | Embeddings | Sentence Transformers |
 | Vector database | ChromaDB |
