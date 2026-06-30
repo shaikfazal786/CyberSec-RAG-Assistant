@@ -1,8 +1,8 @@
 const suggestions = [
   "What is phishing?",
   "How does ransomware work?",
-  "Explain MITRE ATT&CK.",
-  "What is incident response?",
+  "Explain about Network.",
+  "What is the TCP/IP Model?",
   "What is social engineering?",
 ];
 
