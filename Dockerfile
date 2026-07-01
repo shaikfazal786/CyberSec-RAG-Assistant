@@ -13,4 +13,4 @@ COPY . .
 
 EXPOSE 10000
 
-CMD ["sh", "-c", "exec gunicorn --bind 0.0.0.0:${PORT:-10000} web:app"]
+CMD ["python", "web.py"]
