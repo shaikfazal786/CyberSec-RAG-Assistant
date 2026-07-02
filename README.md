@@ -49,6 +49,12 @@ Open `http://127.0.0.1:5000` in a browser to access the home page.
 A quick service check is available at `http://127.0.0.1:5000/health`.
 Re-run `python ingest.py` whenever PDFs change. The ingestion command rebuilds the collection to prevent stale and duplicate chunks.
 
+## Render Deployment
+
+This project includes a `Dockerfile` and `render.yaml` for Render. In Render, set `GOOGLE_API_KEY` as a secret environment variable before deploying.
+
+The deployed app also needs cybersecurity PDFs to build the ChromaDB index. By default, `data/*.pdf` and `chroma_db/` are ignored by Git, so a GitHub deploy will not include your local PDFs or local vector database. If your PDFs are safe to publish, add them to the repository under `data/`; the container startup script will build the index automatically. If the PDFs must stay private, use private storage or another secure ingestion workflow instead of committing them to GitHub.
+
 ## Configuration
 
 Settings can be changed through environment variables in `.env`:
