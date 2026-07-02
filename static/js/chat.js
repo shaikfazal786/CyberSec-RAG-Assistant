@@ -55,7 +55,17 @@ async function askQuestion(question) {
       body: JSON.stringify({ question }),
     });
 
-    const data = await response.json();
+    const text = await response.text();
+    let data = {};
+
+    if (text) {
+      try {
+        data = JSON.parse(text);
+      } catch {
+        data = { error: text };
+      }
+    }
+
     if (!response.ok) {
       throw new Error(data.error || "Unable to fetch answer.");
     }

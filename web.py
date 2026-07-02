@@ -1,6 +1,7 @@
 import os
 
 from flask import Flask, jsonify, render_template, request
+from werkzeug.exceptions import HTTPException
 
 app = Flask(__name__, static_folder="static", template_folder="templates")
 
@@ -29,6 +30,18 @@ def history():
 @app.route("/health")
 def health():
     return jsonify({"status": "ok", "message": "CyberSec RAG Assistant is running"})
+
+
+@app.errorhandler(HTTPException)
+def handle_http_error(error):
+    message = error.description or error.name
+    return jsonify({"error": message}), error.code
+
+
+@app.errorhandler(Exception)
+def handle_unexpected_error(error):
+    app.logger.exception("Unhandled exception")
+    return jsonify({"error": "Internal server error."}), 500
 
 
 @app.route("/ask", methods=["POST"])
