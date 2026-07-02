@@ -56,10 +56,6 @@ def ask():
         response = get_answer(question)
         return jsonify({
             "answer": response.answer,
-            "sources": [
-                {"filename": source.filename, "page": source.page}
-                for source in response.sources
-            ],
         })
 
     except Exception as exc:

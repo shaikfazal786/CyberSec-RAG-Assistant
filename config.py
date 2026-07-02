@@ -22,7 +22,7 @@ class Settings:
     google_api_key: str | None = os.getenv("GOOGLE_API_KEY")
     chunk_size: int = int(os.getenv("CHUNK_SIZE", "500"))
     chunk_overlap: int = int(os.getenv("CHUNK_OVERLAP", "100"))
-    top_k: int = int(os.getenv("TOP_K", "3"))
+    top_k: int = int(os.getenv("TOP_K", "5"))
 
     def __post_init__(self) -> None:
         if self.chunk_size <= 0:

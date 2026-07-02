@@ -22,4 +22,4 @@ services:
       - key: CHUNK_OVERLAP
         value: 100
       - key: TOP_K
-        value: 3
+        value: 5

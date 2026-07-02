@@ -62,6 +62,6 @@ Settings can be changed through environment variables in `.env`:
 | `COLLECTION_NAME` | `cybersecurity_documents` |
 | `CHUNK_SIZE` | `500` |
 | `CHUNK_OVERLAP` | `100` |
-| `TOP_K` | `3` |
+| `TOP_K` | `5` |
 
-The assistant is instructed to use only retrieved context and exposes the source filename and PDF page for each retrieved chunk. Treat its output as educational material, not as a substitute for professional incident response.
+The assistant is instructed to use only retrieved context and return direct answers without exposing document filenames, page numbers, or source metadata to end users. Treat its output as educational material, not as a substitute for professional incident response.

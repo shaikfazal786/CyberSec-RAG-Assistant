@@ -2,7 +2,6 @@ const askForm = document.getElementById("question-form");
 const statusMessage = document.getElementById("status");
 const answerCard = document.getElementById("answer-card");
 const answerField = document.getElementById("answer");
-const sourceList = document.getElementById("source-list");
 
 function getHistory() {
   try {
@@ -18,19 +17,12 @@ function saveHistory(entry) {
   localStorage.setItem("chatHistory", JSON.stringify(history.slice(0, 20)));
 }
 
-function renderResponse(answer, sources) {
-  if (!answerCard || !answerField || !sourceList) {
+function renderResponse(answer) {
+  if (!answerCard || !answerField) {
     return;
   }
 
   answerField.textContent = answer;
-  sourceList.innerHTML = sources
-    .map(
-      (source, index) =>
-        `<li><strong>Source ${index + 1}:</strong> ${source.filename} (Page ${source.page})</li>`
-    )
-    .join("");
-
   answerCard.classList.remove("hidden");
 }
 
@@ -70,8 +62,8 @@ async function askQuestion(question) {
       throw new Error(data.error || "Unable to fetch answer.");
     }
 
-    renderResponse(data.answer, data.sources || []);
-    saveHistory({ question, answer: data.answer, sources: data.sources || [] });
+    renderResponse(data.answer);
+    saveHistory({ question, answer: data.answer });
     setStatus("Answer returned successfully.");
   } catch (error) {
     setStatus(error.message || "Request failed.", true);

@@ -23,9 +23,7 @@ function renderHistory() {
   historyList.innerHTML = entries
     .map(
       (entry, index) =>
-        `<li><div class="history-item"><strong>${index + 1}. ${entry.question}</strong><p>${entry.answer}</p><span class="history-sources">${entry.sources
-          .map((source) => `${source.filename} (Page ${source.page})`)
-          .join(" • ")}</span></div></li>`
+        `<li><div class="history-item"><strong>${index + 1}. ${entry.question}</strong><p>${entry.answer}</p></div></li>`
     )
     .join("");
 }

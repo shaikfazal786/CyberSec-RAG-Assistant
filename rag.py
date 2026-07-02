@@ -60,12 +60,14 @@ def retrieve(question: str, top_k: int | None = None) -> list[Source]:
 
 def _build_prompt(question: str, sources: list[Source]) -> str:
     context = "\n\n".join(
-        f"[Source {index}: {source.filename}, page {source.page}]\n{source.text}"
+        f"[Context {index}]\n{source.text}"
         for index, source in enumerate(sources, start=1)
     )
-    return f"""You are a cybersecurity document assistant. Answer using only the context below.
+    return f"""You are a cybersecurity knowledge assistant. Answer using only the context below.
 If the context does not contain the answer, say that the indexed documents do not provide enough information.
-Do not invent facts. Cite supporting passages inline as [Source N].
+Do not invent facts.
+Give a direct, complete, user-friendly answer.
+Do not mention documents, sources, filenames, page numbers, citations, or retrieved context.
 
 Context:
 {context}
@@ -115,23 +117,6 @@ def answer_question(question: str) -> RAGResponse:
     )
 
 
-def format_sources(
-    sources: list[Source]
-) -> str:
-
-    result = []
-
-    for i, source in enumerate(sources, start=1):
-
-        result.append(
-            f"[Source {i}] "
-            f"{source.filename} "
-            f"(Page {source.page})"
-        )
-
-    return "\n".join(result)
-
-
 def main():
 
     print(
@@ -155,13 +140,6 @@ def main():
 
             print("\nAnswer:\n")
             print(response.answer)
-
-            print("\nSources:\n")
-            print(
-                format_sources(
-                    response.sources
-                )
-            )
 
         except Exception as e:
 

@@ -168,8 +168,7 @@ img {
 }
 
 .suggestion-list,
-.history-list,
-#source-list {
+.history-list {
   list-style: none;
   padding: 0;
   margin: 1rem 0 0;
@@ -178,8 +177,7 @@ img {
 }
 
 .suggestion-list li,
-.history-list li,
-#source-list li {
+.history-list li {
   padding: 0.85rem 1rem;
   border-radius: 1rem;
   background: rgba(15, 23, 42, 0.7);
@@ -209,12 +207,6 @@ img {
 
 .history-item p {
   margin: 0;
-  color: var(--muted);
-}
-
-.history-sources {
-  display: block;
-  font-size: 0.95rem;
   color: var(--muted);
 }
 
@@ -301,10 +293,6 @@ textarea:focus {
 .answer-card p {
   margin: 0 0 1.25rem;
   color: var(--text);
-}
-
-.sources {
-  margin-top: 1rem;
 }
 
 .note-card {
