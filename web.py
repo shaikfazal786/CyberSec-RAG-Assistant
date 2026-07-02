@@ -2,9 +2,13 @@ import os
 
 from flask import Flask, jsonify, render_template, request
 
-from rag import answer_question
-
 app = Flask(__name__, static_folder="static", template_folder="templates")
+
+
+def get_answer(question: str):
+    from rag import answer_question
+
+    return answer_question(question)
 
 
 @app.route("/")
@@ -36,7 +40,7 @@ def ask():
         return jsonify({"error": "Question cannot be empty."}), 400
 
     try:
-        response = answer_question(question)
+        response = get_answer(question)
         return jsonify({
             "answer": response.answer,
             "sources": [

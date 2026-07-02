@@ -11,6 +11,8 @@ RUN pip install --upgrade pip && pip install -r requirements.txt
 
 COPY . .
 
+RUN chmod +x start.sh
+
 EXPOSE 10000
 
-CMD ["python", "web.py"]
+CMD ["./start.sh"]
