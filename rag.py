@@ -10,13 +10,12 @@ from config import settings
 from utils.embeddings import embedding_model
 
 
-db = Chroma(
-    persist_directory=str(settings.chroma_path),
-    embedding_function=embedding_model,
-    collection_name=settings.collection_name,
-)
-
-retriever = db.as_retriever(search_kwargs={"k": settings.top_k})
+def _get_db():
+    return Chroma(
+        persist_directory=str(settings.chroma_path),
+        embedding_function=embedding_model,
+        collection_name=settings.collection_name,
+    )
 
 
 @dataclass(frozen=True)
@@ -34,6 +33,9 @@ class RAGResponse:
 
 
 def retrieve(question: str, top_k: int | None = None) -> list[Source]:
+    db = _get_db()
+    retriever = db.as_retriever(search_kwargs={"k": settings.top_k})
+
     if db._collection.count() == 0:
         raise RuntimeError("The document index is empty. Run `python ingest.py` first.")
 
